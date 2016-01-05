@@ -1,0 +1,3 @@
+div(id="{{person.$id}}" ng-class="{ghost: allocation.ghost}" ui-draggable="true")
+  img(ng-src="{{person.picture}}")
+  md-tooltip(visible="showTooltip" md-direction="bottom") {{person.name}} aka &ldquo;{{person.known_as}}&rdquo;

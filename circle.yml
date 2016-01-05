@@ -1,0 +1,14 @@
+dependencies:
+  pre:
+    - bower install
+  post:
+    - npm install module-deps
+    - npm install gulp -g
+test:
+  override:
+    - gulp browserify
+# deployment:
+#   production:
+#     branch: master
+#     heroku:
+#       appname: andela-allocations-staging

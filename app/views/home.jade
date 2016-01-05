@@ -1,0 +1,17 @@
+md-content.md-default-theme.no-bg(layout="column" layout-fill ng-if="currentUser")
+  section(layout="row" flex)
+    side-nav
+    md-content(flex layout="column")
+      md-toolbar
+        .md-toolbar-tools(class="md-accent")
+          h1 Project Allocations
+          span(flex layout="row" layout-align="end center" ng-if="currentUser")
+            input#name-search(ng-show="searching" ng-model="projectSearch.name" placeholder="Search" style="margin-right: -48px")
+            md-button(ng-click="showSearchField($event)" ng-class="{active: searching}" aria-label="Search by Name")
+              i.fa.fa-search
+            md-button(ng-click="showMenu($event)" aria-label="Show Bottom Sheet")
+              i.fa.fa-ellipsis-v
+      md-content(flex layout="column" layout-fill)
+        md-grid-list(md-cols-sm='2' md-cols-md='6' md-cols-gt-md='8' md-row-height-gt-md='1:2' md-row-height='1:2' md-gutter='12x' md-gutter-gt-sm='8px')
+          md-grid-tile.gray(md-rowspan='1' md-colspan='2' ng-repeat="project in projects | orderBy:'name' | projectSearch:projectSearch")
+            project.project(ui-on-Drop="onDrop($event, projects, project)")

@@ -1,0 +1,49 @@
+md-content(flex="25")
+  md-toolbar(style="height: 50px")
+    .md-toolbar-tools
+      a(ui-sref="people")
+        span People
+  md-content.md-padding
+    md-content.md-padding
+      md-input-container
+        label Start typing name
+        input(type="text" ng-model="search.name")
+    md-list
+      md-item(ng-repeat="person in people | orderBy:'name' | filter:search")
+        a(ui-sref="admin/people/id({personId:person.$id})")
+          .user-list
+            img(ng-src="{{person.picture}}")
+            md-button.md-raised.md-primary.small-margin(ng-bind="person.name" aria-label="{{person.name}}")
+md-content(flex="75" layout="column" layout-fill).md-whiteframe-z1
+  md-toolbar(style="height: 50px")
+    .md-toolbar-tools
+      span(ng-bind="selectedPerson.name")
+      span(flex layout="row" layout-align="end center" ng-if="currentUser")
+      a(ui-sref="default")
+        i.fa.fa-home.large-text
+  md-content.md-padding(flex)
+    img(ng-src="{{selectedPerson.picture}}" height="128")
+    form
+      md-input-container
+        label Email Address
+        input(type="text" ng-model="selectedPerson.email" disabled)
+      md-input-container
+        label Full Name
+        input(type="text" ng-model="selectedPerson.name")
+      md-input-container
+        label Alias
+        input(type="text" ng-model="selectedPerson.known_as")
+    h3(ng-if="allocations.length") Allocations
+    md-list
+      md-item(ng-repeat="alloc in allocations")
+        md-card
+          md-item-content
+            .md-tile-left
+              b {{ alloc.projectName }}
+            .md-tile-content(style="text-align: right;")
+              span(ng-if="alloc.startDate") {{ moment(alloc.startDate).format("LL") }}
+              span(ng-if="alloc.endDate") &nbsp;to&nbsp;
+              span(ng-if="alloc.endDate") {{ moment(alloc.endDate).format("LL") }}
+  md-toolbar(style="background-color: white; height: 50px" ng-if="selectedPerson")
+    .md-toolbar-tools
+      md-button(class="md-raised md-warn" ng-click="deletePerson()") Delete

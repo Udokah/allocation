@@ -1,0 +1,15 @@
+md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="25" ui-on-Drop="onDrop($event)")
+  md-toolbar
+    .md-toolbar-tools
+      h1 Available People
+  md-content.md-padding
+    md-input-container
+      label Search Available People
+      input(type="text" ng-model="peopleSearch.name")
+    md-list
+      md-item(ng-repeat="person in people | orderBy:'cohort.name' | peopleSearch:peopleSearch" ng-if="!person.allocation_ref")
+        md-card(style="padding: 8px;")
+          md-item-content
+            .md-tile-left
+              avatar
+            .md-tile-content {{person.name}}

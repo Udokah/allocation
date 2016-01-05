@@ -1,0 +1,9 @@
+md-card(flex)
+  md-toolbar
+    .md-toolbar-tools(class="md-accent")
+      h3 {{ project.name }}
+      i.fa.fa-dollar(ng-if="project.billable" style="color: gold;")
+      i.fa.fa-dollar(ng-if="project.internal_billable" style="color: silver;")
+  div
+    person-lookup(ng-repeat="(uid, value) in project.allocations")
+      avatar(style="position: relative;" ng-click="showAllocationPopup(project, uid)")

@@ -1,0 +1,11 @@
+.main-container(layout="vertical")
+  div(flex layout="horizontal" layout-sm="horizontal")
+    main(flex)
+      md-toolbar
+        .md-toolbar-tools.extra
+          span.md-flex.settings-header Skilltree
+          include ../admin/admin-toolbar.jade
+      md-content.md-padding.extra
+        .notification
+          | Pull people from Skilltree.
+          a(ng-click="getSkilltreeUsers()" href="#") Click to connect

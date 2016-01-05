@@ -1,0 +1,22 @@
+md-dialog
+  md-toolbar
+    .md-toolbar-tools
+      span Allocate {{ person.known_as }} to {{ project.name }}?
+  md-content(layout="column" layout-fill style="min-width: 500px; min-height: 400px;")
+    form
+      .date-container
+        label Start Date
+        .input-content
+          input.form-control(type="text" datepicker-popup="{{format}}" ng-model="allocation.sd" is-open="sdOpened" datepicker-options="dateOptions" close-text="Close")
+          button.btn.btn-default(type="button" ng-click="openStartDt($event)")
+            i.fa.fa-calendar
+      .date-container
+        label End Date
+        .input-content
+          input.form-control(type="text" datepicker-popup="{{format}}" ng-model="allocation.ed" is-open="edOpened" datepicker-options="dateOptions" close-text="Close")
+          button.btn.btn-default(type="button" ng-click="openEndDt($event)")
+            i.fa.fa-calendar
+      md-checkbox.md-primary.checkbox(aria-label="ghost" ng-model="allocation.ghost") Ghost
+    .md-actions(layout="row" layout-align="center center")
+      md-button.md-primary(ng-click="cancel()") Cancel
+      md-button.md-primary(ng-click="save()") Save

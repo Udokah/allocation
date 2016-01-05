@@ -1,0 +1,32 @@
+md-content(flex="25")
+  md-toolbar(style="height: 50px")
+    .md-toolbar-tools
+      span Projects Editor
+  md-content.md-padding
+    md-input-container
+      label Start typing name
+      input(type="text" ng-model="search.name")
+    ul
+      li(ng-repeat="project in projects | orderBy:'name' | filter:search")
+        a(ui-sref="admin/projects/id({projectId:project.$id})")
+          md-button.md-raised.md-primary.small-text.small-margin {{project.name}}
+md-content(flex="75" layout="column" layout-fill).md-whiteframe-z1
+  md-toolbar(style="height: 50px")
+    .md-toolbar-tools
+      span(ng-bind="selectedProject.name")
+      include admin-toolbar.jade
+  md-content.md-padding(flex)
+    form
+      md-input-container
+        label Name
+        input(type="text" ng-model="selectedProject.name")
+      md-input-container
+        label Location
+        input(type="text" ng-model="selectedProject.location")
+      md-checkbox.md-primary.checkbox(aria-label="billable" ng-model="selectedProject.billable") Billable
+      md-checkbox.md-primary.checkbox(aria-label="internal" ng-model="selectedProject.internal_billable") Internal Billable
+  md-toolbar(style="background-color: white; height: 50px")
+    .md-toolbar-tools
+      md-button(class="md-raised md-primary" ng-click="updateProject()") Save
+      md-button(class="md-raised md-warn" ng-click="deleteProject()") Delete
+      md-button(class="md-raised" ng-click="createProjectDialog()") Add Project

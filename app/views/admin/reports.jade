@@ -1,0 +1,20 @@
+md-content(flex)
+  md-toolbar(style="height: 50px")
+    .md-toolbar-tools
+      span Reports
+      span(flex layout="row" layout-align="end center" ng-if="currentUser")
+      a(ui-sref="default")
+        i.fa.fa-home.large-text
+  md-grid-list.reports(md-cols-sm='2' md-cols-md='4' md-cols-gt-md='4' md-row-height="150px" md-gutter='12x' md-gutter-gt-sm='8px')
+    md-grid-tile.gray(md-rowspan='1' md-colspan='2')
+      md-card(flex)
+        md-toolbar
+          .md-toolbar-tools.md-accent(layout="row" layout-align="center center")
+            h4 Billable Projects
+        .count(layout="row" layout-align="center center") {{ billableCount }}
+    md-grid-tile.gray(md-rowspan='1' md-colspan='2')
+      md-card(flex)
+        md-toolbar
+          .md-toolbar-tools.md-accent(layout="row" layout-align="center center")
+            h4 Internal Billable Projects
+        .count(layout="row" layout-align="center center") {{ internalBillableCount }}
